@@ -8,7 +8,7 @@ class SmallSMILHandler(ContentHandler):
     
     def __init__ (self):
         self.width = ""
-        self.heigth = ""
+        self.height = ""
         self.backgroundcolor = ""
         self.id = ""
         self.top = ""
@@ -19,100 +19,52 @@ class SmallSMILHandler(ContentHandler):
         self.region = ""
         self.begin = ""
         self.dur = ""
-        self.inRoot = 0
-        self.inRegion = 0
-        self.inImg = 0
-        self.inAudio = 0
-        self.inTextstream = 0
     
     def startElement(self, name, attrs):
+        lista = []
         if name == 'root-layout':
             self.width = attrs.get('width', "")
-            self.height = attr.get('height', "")
-            self.backgroundcolor = attr.get('background-color', "")
-            self.inRoot = 1
-            
+            self.height = attrs.get('height', "")
+            self.backgroundcolor = attrs.get('background-color', "")
+            dicc_root = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
+            print(dicc_root)
+            lista.append(dicc_root)
         elif name == 'region':
             self.id = attrs.get('id', "")
             self.top = attrs.get('top',"")
             self.bottom = attrs.get('bottom', "")
-            self.left = attr.get('left', "")
-            self.right = attr.get('right', "")
-            self.inRegion = 1
+            self.left = attrs.get('left', "")
+            self.right = attrs.get('right', "")
+            dicc_region = {'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right}
+            print(dicc_region)
+            lista.append(dicc_region)
         elif name == 'img':
             self.src = attrs.get('src', "")
             self.region = attrs.get('region', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            self.inImg = 1
+            dicc_img = {'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur}
+            print(dicc_img)
+            lista.append(dicc_img)
         elif name == 'audio':
             self.src = attrs.get('src', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur',"")
-            self.inAudio = 1
+            dicc_audio = {'src': self.src, 'begin': self.begin, 'dur': self.dur}
+            print(dicc_audio)
+            lista.append(dicc_audio)
         elif name == 'textstream':
             self.src = attrs.get('src',"")
             self.region = attrs.get('region', "")
-            self.inTextstream = 1
-
-        dicc_root = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
-        dicc_region = {'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right}
-        dicc_img = {'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur}
-        dicc_audio = {'src': self.src, 'begin': self.begin, 'dur': self.dur}
-        dicc_text = {'src': self.src, 'region': self.region}
-        print(dicc_root)
-        print(dicc_region)
-        print(dicc_img)
-        print(dicc_audio)
-        print(dicc_text)
-"""     def endElement(self, name):
-        if name == 'root-layout':
-            self.root-layout = ""
-            self.inRoot = 0
-        elif name == 'region':
-            self.region = ""
-            self.inRegion = 0
-        elif name == 'img':
-            self.img = ""
-            self.inImg = 0
-        elif name == 'audio':
-            self.audio = ""
-            self.inAudio = 0
-        elif name == 'textstream':
-            self.textstream = ""
-            self.inTextstream = 0
- def characters(self, char):
-        if self.inRoot:
-            self.root-layout += 
-        if self.inRegion:
-            self.Region += 
-        if self.inImg:
-            self.img += char
-        if self.inAudio:
-            self.audio += 
-        if self.inTextstream:
-            self.textstream += 
-
-    def get_tags(self):
-"""
+            dicc_text = {'src': self.src, 'region': self.region}
+            print(dicc_text)
+            lista.append(dicc_text)
+        
+        
+        print(lista)
 
 if __name__ == "__main__":
     parser = make_parser()
     cHandler = SmallSMILHandler()
     parser.setContentHandler(cHandler)
     parser.parse(open('karaoke.smil'))
-
-
-
-
-
-
-
-
-
-
-
-
- 
-            
-
