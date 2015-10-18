@@ -9,9 +9,9 @@ class SmallSMILHandler(ContentHandler):
     def __init__ (self):
         self.etiqueta = ['root-layout', 'region', 'img', 'audio', 'textstream']
         self.atributo = {'root-layout': ['width', 'height', 'background-color'],
-                         'region': ['id', 'top', 'bottom', 'left', 'right']
-                         'img': ['src', 'region', 'begin', 'dur']
-                         'audio':['src', 'begin', 'dur']
+                         'region': ['id', 'top', 'bottom', 'left', 'right'],
+                         'img': ['src', 'region', 'begin', 'dur'],
+                         'audio':['src', 'begin', 'dur'],
                          'textstream': ['src', 'region']}
         self.lista = []
 
