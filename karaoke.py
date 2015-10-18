@@ -5,6 +5,8 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import smallsmilhandler
 import sys
+import json
+from urllib.request import urlretrieve
 
 
 if __name__ == "__main__":
@@ -18,6 +20,17 @@ if __name__ == "__main__":
         archivo = open('karaoke.json','w')
         line = json.dumps(lista)
         archivo.write(line)
+
+        for dicc in lista:
+            for etiqueta in dicc:
+                if dicc[etiqueta].find('http://') == 0:
+                    url = dicc[etiqueta]
+                    elemento = url[url.rfind('/') + 1:]
+                    urlretrieve(url, elemento)
+                    modifica = dicc[etiqueta].split('/')[-1]
+                    dicc[etiqueta] = modifica
+                    
+
         for dicc in lista:
             print(dicc['name']),
             for i in dicc:
