@@ -15,6 +15,9 @@ if __name__ == "__main__":
         parser.setContentHandler(cHandler)
         parser.parse(fich)
         lista = cHandler.get_tags()
+        archivo = open('karaoke.json','w')
+        line = json.dumps(lista)
+        archivo.write(line)
         for dicc in lista:
             print(dicc['name']),
             for i in dicc:
