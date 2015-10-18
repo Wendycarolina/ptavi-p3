@@ -15,7 +15,11 @@ if __name__ == "__main__":
         parser.setContentHandler(cHandler)
         parser.parse(fich)
         lista = cHandler.get_tags()
-        print(lista)
+        for dicc in lista:
+            print(dicc['name']),
+            for i in dicc:
+                if dicc[i] and i != 'name':
+                    print("\t" + i + '="' + dicc[i] + '"')
     except IOError:
         sys.exit("Usage: python karaoke.py file.smil")
     except IndexError:
