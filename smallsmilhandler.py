@@ -19,15 +19,18 @@ class SmallSMILHandler(ContentHandler):
         self.region = ""
         self.begin = ""
         self.dur = ""
-    
+        self.lista = []
+
+    def get_tags(self,lista):
+        for i in lista:
+            lista.append(i)
+        print(lista)
     def startElement(self, name, attrs):
-        lista = []
         if name == 'root-layout':
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
             self.backgroundcolor = attrs.get('background-color', "")
             dicc_root = {'width': self.width, 'height': self.height, 'backgroundcolor': self.backgroundcolor}
-            print(dicc_root)
             lista.append(dicc_root)
         elif name == 'region':
             self.id = attrs.get('id', "")
@@ -59,9 +62,10 @@ class SmallSMILHandler(ContentHandler):
             dicc_text = {'src': self.src, 'region': self.region}
             print(dicc_text)
             lista.append(dicc_text)
-        
-        
-        print(lista)
+        get_tags(lista)
+       
+
+
 
 if __name__ == "__main__":
     parser = make_parser()
