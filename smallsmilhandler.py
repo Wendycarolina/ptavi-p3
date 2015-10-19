@@ -29,7 +29,7 @@ class SmallSMILHandler(ContentHandler):
         return self.lista
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":
     parser = make_parser()
     cHandler = SmallSMILHandler()
     parser.setContentHandler(cHandler)
